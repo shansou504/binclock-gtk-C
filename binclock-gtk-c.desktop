@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Binclock-Gtk
+Name=Binclock-Gtk-C
 Type=Application
 Categories=Utility;
-Exec=binclock-gtk
-Icon=binclock-gtk
+Exec=binclock-gtk-c
+Icon=binclock-gtk-c
