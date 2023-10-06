@@ -178,6 +178,9 @@ static void activate (GtkApplication *app, gpointer user_data) {
 //	show widgets
 	gtk_widget_show_all (window);
 
+//	quit app if already open
+	g_signal_connect (app, "activate", G_CALLBACK (g_application_quit), app);
+
 //	refresh label
 	g_timeout_add_seconds (1, update_time, label);
 
