@@ -147,21 +147,19 @@ int css (gpointer window) {
 	return 0;
 }
 
-int main (void) {
-
-	gtk_init(NULL, NULL);
-
+static void activate (GtkApplication *app, gpointer user_data) {
 //	window
 	GtkWidget *window;
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	window = gtk_application_window_new (app);
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 	gtk_window_set_default_size (GTK_WINDOW (window), 210, 160);
-//	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
+	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
 
 //	window location
 //	gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_NORTH_EAST);
 //	gtk_window_move (GTK_WINDOW (window), 1710, 0);
+	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
 
 //	icon
   const char* iconfile = "/usr/share/icons/hicolor/32x32/apps/binclock-gtk-c.png";
@@ -183,9 +181,19 @@ int main (void) {
 //	refresh label
 	g_timeout_add_seconds (1, update_time, label);
 
-//	main
-	gtk_main();
+}
 
-//	success
-	return  0;
+
+int main (int argc, char **argv) {
+
+  GtkApplication *app;
+  int status;
+
+  app = gtk_application_new ("com.github.shansou504.binclock_gtk_c", 0);
+  g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+  status = g_application_run (G_APPLICATION (app), argc, argv);
+  g_object_unref (app);
+
+  return status;
+
 }
