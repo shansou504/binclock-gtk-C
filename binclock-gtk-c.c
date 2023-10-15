@@ -154,7 +154,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 	gtk_window_set_default_size (GTK_WINDOW (window), 210, 160);
-	gtk_window_set_resizable (GTK_WINDOW (window), TRUE);
+	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
 	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
 
 //	window location
