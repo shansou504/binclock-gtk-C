@@ -2,7 +2,7 @@ CFLAGS = `pkg-config --cflags gtk+-3.0`
 LIBS = `pkg-config --libs gtk+-3.0`
 
 binclock-gtk : 
-	cc -o binclock-gtk-c binclock-gtk-c.c $(CFLAGS) $(LIBS)
+	cc -o binclock-gtk-c binclock-gtk-c.c $(CFLAGS) $(LIBS) -lm
 
 install :
 	cp binclock-gtk-c.desktop /usr/share/applications/
