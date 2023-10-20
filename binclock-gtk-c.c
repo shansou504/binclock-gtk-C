@@ -4,6 +4,16 @@
 #include <string.h>
 #include <math.h>
 
+static void
+check_escape(GtkWidget *widget,
+	GdkEventKey *event,
+	gpointer data)
+{
+  if (event->keyval == GDK_KEY_Escape) {
+		system("pkill binclock-gtk-c &");
+  }
+}
+
 gboolean update_time(gpointer user_data) {
 	time_t t;
 	time(&t);
@@ -46,7 +56,6 @@ gboolean update_time(gpointer user_data) {
 	g_free (markup);
 
 	return G_SOURCE_CONTINUE;
-
 }
 
 static void activate (GtkApplication *app, gpointer user_data) {
@@ -78,6 +87,9 @@ static void activate (GtkApplication *app, gpointer user_data) {
 
 //	quit app if already open
 	g_signal_connect (app, "activate", G_CALLBACK (g_application_quit), app);
+
+//	quit app when escape is pressed
+	g_signal_connect(window, "key_press_event", G_CALLBACK(check_escape), NULL);
 
 //	refresh label
 	g_timeout_add_seconds (1, update_time, label);
