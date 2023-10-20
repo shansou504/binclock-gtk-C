@@ -6,11 +6,13 @@ binclock-gtk :
 
 install :
 	cp binclock-gtk-c.desktop /usr/share/applications/
+	cp binclock-gtk-c.png /usr/share/icons/hicolor/16x16/apps/
 	cp binclock-gtk-c.png /usr/share/icons/hicolor/32x32/apps/
 	cp binclock-gtk-c /usr/local/bin/
 
 uninstall :
 	rm /usr/share/applications/binclock-gtk-c.desktop
+	rm /usr/share/icons/hicolor/16x16/apps/binclock-gtk-c.png
 	rm /usr/share/icons/hicolor/32x32/apps/binclock-gtk-c.png
 	rm /usr/local/bin/binclock-gtk-c
 
