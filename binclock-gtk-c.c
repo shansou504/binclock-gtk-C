@@ -60,16 +60,25 @@ gboolean update_time(gpointer user_data) {
 
 static void activate (GtkApplication *app, gpointer user_data) {
 //	window
+	gint w = 210;
+	gint h = 160;
 	GtkWidget *window;
 	window = gtk_application_window_new (app);
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
-	gtk_window_set_default_size (GTK_WINDOW (window), 210, 160);
+	gtk_window_set_default_size (GTK_WINDOW (window), w, h);
 	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
+	gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_NORTH_WEST);
 	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
 
 //	window location
-	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
+	GdkDisplay *display;
+	display = gdk_display_get_default();
+	GdkMonitor *monitor;
+	monitor = gdk_display_get_primary_monitor(display);
+	GdkRectangle geometry;
+	gdk_monitor_get_geometry (monitor, &geometry); 
+	gtk_window_move (GTK_WINDOW (window), geometry.width - w - 10, 0);
 
 //	icon
   const char* iconfile = "/usr/share/icons/hicolor/32x32/apps/binclock-gtk-c.png";
