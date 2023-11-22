@@ -68,7 +68,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
 	gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 	gtk_window_set_default_size (GTK_WINDOW (window), w, h);
 	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
-	gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_NORTH_WEST);
+	gtk_window_set_gravity (GTK_WINDOW (window), GDK_GRAVITY_CENTER);
 	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
 
 //	window location
@@ -78,7 +78,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
 	monitor = gdk_display_get_primary_monitor(display);
 	GdkRectangle geometry;
 	gdk_monitor_get_geometry (monitor, &geometry); 
-	gtk_window_move (GTK_WINDOW (window), geometry.width - w - 10, 0);
+	gtk_window_move (GTK_WINDOW (window), geometry.width - w - 20, 0);
 
 //	icon
   const char* iconfile = "/usr/share/icons/hicolor/32x32/apps/binclock-gtk-c.png";
