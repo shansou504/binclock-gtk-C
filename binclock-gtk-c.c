@@ -81,7 +81,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
 	gtk_window_move (GTK_WINDOW (window), geometry.width - w - 20, 0);
 
 //	icon
-  const char* iconfile = "/usr/share/icons/hicolor/32x32/apps/binclock-gtk-c.png";
+  const char* iconfile = "/usr/share/icons/hicolor/48x48/apps/binclock-gtk-c.png";
 	GdkPixbuf *icon = gdk_pixbuf_new_from_file (iconfile, NULL);
 	gtk_window_set_icon (GTK_WINDOW (window), GDK_PIXBUF (icon));
 
